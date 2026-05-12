@@ -180,29 +180,29 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
 
     <ul className="flex flex-col items-center gap-8 py-10 text-lg">
 
-      <a href="#home" className="text-green-400 cursor-pointer">
+      <a href="#home" onClick={() => setMenuOpen(false)} className="text-green-400 cursor-pointer">
   Home
 </a>
 
-      <a href="#gallery" className="cursor-pointer hover:text-green-400 transition">
+      <a href="#gallery" onClick={() => setMenuOpen(false)} className="cursor-pointer hover:text-green-400 transition">
   Gallery
 </a>
 
-     <a href="#blogs" className="cursor-pointer hover:text-green-400 transition">
+     <a href="#blogs" onClick={() => setMenuOpen(false)} className="cursor-pointer hover:text-green-400 transition">
   Blogs
 </a>
 
-      <li className="hover:text-green-400 cursor-pointer">
+      <a href="#destination" onClick={() => setMenuOpen(false)} className="cursor-pointer hover:text-green-400 transition">
         Destinations
-      </li>
+      </a>
 
-      <a href="#about" className="cursor-pointer hover:text-green-400 transition">
+      <a href="#about" onClick={() => setMenuOpen(false)} className="cursor-pointer hover:text-green-400 transition">
   About Me
 </a>
 
-      <li className="hover:text-green-400 cursor-pointer">
+      <a href="#contact" onClick={() => setMenuOpen(false)} className="cursor-pointer hover:text-green-400 transition">
         Contact
-      </li>
+      </a>
 
     </ul>
 
@@ -386,11 +386,11 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
   initial={{ opacity: 0, y: 100 }}
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 1 }}
-  className="grid grid-cols-1 md:grid-cols-4 gap-6"
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
 >
 
       {/* CARD 1 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[500px]">
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
 
         <img
           src={mountain}
@@ -415,7 +415,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
       </div>
 
       {/* CARD 2 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[500px]">
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
 
         <img
           src={lake}
@@ -440,7 +440,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
       </div>
 
       {/* CARD 3 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[500px]">
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
 
         <img
           src={sunset}
@@ -465,7 +465,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
       </div>
 
       {/* CARD 4 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[500px]">
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
 
         <img
           src={forest}
@@ -496,7 +496,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
 </section>
 {/* BLOG SECTION */}
 
-<section id="blogs" className="bg-black px-10 py-20">
+<section id="blogs" className="bg-black px-5 md:px-10 py-20">
 
   <div className="max-w-7xl mx-auto">
 
@@ -509,7 +509,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
           Blog
         </p>
 
-        <h2 className="text-5xl font-bold mt-4">
+        <h2 className="text-3xl md:text-5xl font-bold mt-4">
           Latest From The Blog
         </h2>
 
@@ -654,7 +654,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
       {/* CARD 1 */}
-      <div className="relative overflow-hidden rounded-3xl h-[500px] group border border-gray-800 hover:border-green-400 transition">
+      <div className="relative overflow-hidden rounded-3xl h-[320px] sm:h-[400px] md:h-[500px] group border border-gray-800 hover:border-green-400 transition">
 
         <img
           src={bij}
@@ -680,7 +680,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
       </div>
 
       {/* CARD 2 */}
-      <div className="relative overflow-hidden rounded-3xl h-[500px] group border border-gray-800 hover:border-green-400 transition">
+      <div className="relative overflow-hidden rounded-3xl h-[320px] sm:h-[400px] md:h-[500px] group border border-gray-800 hover:border-green-400 transition">
 
         <img
           src={manali}
@@ -706,7 +706,7 @@ bg-black/30 backdrop-blur-md border-b border-white/10">
       </div>
 
       {/* CARD 3 */}
-      <div className="relative overflow-hidden rounded-3xl h-[500px] group border border-gray-800 hover:border-green-400 transition">
+      <div className="relative overflow-hidden rounded-3xl h-[320px] sm:h-[400px] md:h-[500px] group border border-gray-800 hover:border-green-400 transition">
 
         <img
           src={sk}
