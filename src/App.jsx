@@ -136,7 +136,15 @@ const toggleMusic = () => {
 
 </div>
 
-        
+  {/* BIRDS */}
+
+<div className="birds">
+
+  <div className="bird bird1">🕊️</div>
+  <div className="bird bird2">🕊️</div>
+  <div className="bird bird3">🕊️</div>
+
+</div>      
 
 
         
