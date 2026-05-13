@@ -121,4 +121,99 @@ body{
 }
 
 
+.particles{
+  position:absolute;
+  inset:0;
+  z-index:10;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.particles span{
+  position:absolute;
+  bottom:-20px;
+
+  width:4px;
+  height:4px;
+
+  background:white;
+  border-radius:50%;
+
+  opacity:0.6;
+
+  animation:particleMove linear infinite;
+}
+
+/* RANDOM POSITIONS */
+
+.particles span:nth-child(1){
+  left:10%;
+  animation-duration:12s;
+  width:3px;
+  height:3px;
+}
+
+.particles span:nth-child(2){
+  left:20%;
+  animation-duration:18s;
+}
+
+.particles span:nth-child(3){
+  left:35%;
+  animation-duration:10s;
+  width:5px;
+  height:5px;
+}
+
+.particles span:nth-child(4){
+  left:50%;
+  animation-duration:15s;
+}
+
+.particles span:nth-child(5){
+  left:65%;
+  animation-duration:20s;
+}
+
+.particles span:nth-child(6){
+  left:75%;
+  animation-duration:13s;
+  width:2px;
+  height:2px;
+}
+
+.particles span:nth-child(7){
+  left:85%;
+  animation-duration:17s;
+}
+
+.particles span:nth-child(8){
+  left:95%;
+  animation-duration:11s;
+}
+
+@keyframes particleMove{
+
+  from{
+    transform:
+    translateY(0)
+    scale(1);
+
+    opacity:0;
+  }
+
+  20%{
+    opacity:0.7;
+  }
+
+  to{
+    transform:
+    translateY(-110vh)
+    scale(1.5);
+
+    opacity:0;
+  }
+}
+
+
 

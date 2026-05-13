@@ -120,6 +120,21 @@ const toggleMusic = () => {
   <div className="cloud cloud3"></div>
 
 </div>
+
+{/* PARTICLES */}
+
+<div className="particles">
+
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+
+</div>
         
 
 
