@@ -136,15 +136,6 @@ const toggleMusic = () => {
 
 </div>
 
-{/* RAIN EFFECT */}
-
-<div className="rain">
-
-  {Array.from({ length: 80 }).map((_, i) => (
-    <span key={i}></span>
-  ))}
-
-</div>
         
 
 
