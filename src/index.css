@@ -13,41 +13,75 @@ body{
 }
 /* HERO CINEMATIC ANIMATION */
 
-.hero-image{
 
-  animation:
-  zoomEffect 18s ease-in-out infinite alternate,
-  floatEffect 8s ease-in-out infinite;
 
+  .hero-image{
+  animation: heroAnimation 18s ease-in-out infinite alternate;
   will-change: transform;
 }
-
-/* SLOW ZOOM */
-
-@keyframes zoomEffect{
+@keyframes heroAnimation{
 
   0%{
-    transform:scale(3);
-  }
-
-  100%{
-    transform:scale(1.12);
-  }
-}
-
-/* FLOATING EFFECT */
-
-@keyframes floatEffect{
-
-  0%{
-    transform:translateY(0px);
+    transform:
+    scale(1)
+    translateY(0px);
   }
 
   50%{
-    transform:translateY(-20px);
+    transform:
+    scale(1.08)
+    translateY(-10px);
   }
 
   100%{
-    transform:translateY(0px);
+    transform:
+    scale(1.15)
+    translateY(0px);
   }
 }
+
+
+
+
+
+.cloud{
+  position: absolute;
+  background: rgba(255,255,255,0.08);
+  border-radius: 100px;
+  filter: blur(40px);
+}
+
+.cloud1{
+  width: 300px;
+  height: 100px;
+  top: 10%;
+  left: -20%;
+  animation: moveCloud 35s linear infinite;
+}
+
+.cloud2{
+  width: 250px;
+  height: 80px;
+  top: 40%;
+  left: -30%;
+  animation: moveCloud 45s linear infinite;
+}
+
+.cloud3{
+  width: 350px;
+  height: 120px;
+  top: 70%;
+  left: -25%;
+  animation: moveCloud 55s linear infinite;
+}
+
+@keyframes moveCloud{
+  from{
+    transform: translateX(0);
+  }
+
+  to{
+    transform: translateX(140vw);
+  }
+}
+
