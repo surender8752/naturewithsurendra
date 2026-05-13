@@ -141,9 +141,8 @@ const toggleMusic = () => {
         
 
         {/* NAVBAR */}
-       <nav className="fixed top-0 left-0 w-full z-50
-flex items-center justify-between px-5 md:px-12 py-5
-bg-black/30 backdrop-blur-md border-b border-white/10">
+    <nav className="navbar fixed top-0 left-0 w-full z-50
+flex items-center justify-between px-5 md:px-12 py-5">
 
           {/* LOGO */}
           <div>
