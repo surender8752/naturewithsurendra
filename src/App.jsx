@@ -112,10 +112,14 @@ const toggleMusic = () => {
         {/* DARK OVERLAY */}
        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/80"></div>
 
-        {/* CLOUDS */}
-<div className="cloud cloud1"></div>
-<div className="cloud cloud2"></div>
-<div className="cloud cloud3"></div>
+{/* CLOUDS */}
+<div className="absolute inset-0 z-10 overflow-hidden pointer-events-none">
+
+  <div className="cloud cloud1"></div>
+  <div className="cloud cloud2"></div>
+  <div className="cloud cloud3"></div>
+
+</div>
         
 
 
