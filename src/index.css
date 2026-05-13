@@ -42,55 +42,83 @@ body{
 
 
 
-
 .cloud{
   position:absolute;
   border-radius:999px;
   background:rgba(255,255,255,0.12);
-  filter:blur(50px);
+  filter:blur(40px);
 }
 
 /* CLOUD 1 */
 
 .cloud1{
-  width:350px;
-  height:120px;
-  top:10%;
-  left:-30%;
+  width:300px;
+  height:100px;
 
-  animation:cloudMove 40s linear infinite;
+  top:10%;
+  left:0;
+
+  animation:cloud1 35s linear infinite;
 }
 
 /* CLOUD 2 */
 
 .cloud2{
   width:250px;
-  height:90px;
-  top:40%;
-  left:-20%;
+  height:80px;
 
-  animation:cloudMove 55s linear infinite;
+  top:40%;
+  left:-10%;
+
+  animation:cloud2 45s linear infinite;
 }
 
 /* CLOUD 3 */
 
 .cloud3{
-  width:400px;
-  height:140px;
-  top:70%;
-  left:-35%;
+  width:350px;
+  height:120px;
 
-  animation:cloudMove 70s linear infinite;
+  top:70%;
+  left:-5%;
+
+  animation:cloud3 60s linear infinite;
 }
 
-@keyframes cloudMove{
+/* ANIMATIONS */
+
+@keyframes cloud1{
 
   from{
-    transform:translateX(0);
+    transform:translateX(-400px);
   }
 
   to{
-    transform:translateX(160vw);
+    transform:translateX(1600px);
   }
 }
+
+@keyframes cloud2{
+
+  from{
+    transform:translateX(-500px);
+  }
+
+  to{
+    transform:translateX(1600px);
+  }
+}
+
+@keyframes cloud3{
+
+  from{
+    transform:translateX(-600px);
+  }
+
+  to{
+    transform:translateX(1600px);
+  }
+}
+
+
 
