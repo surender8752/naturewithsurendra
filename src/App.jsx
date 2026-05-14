@@ -237,9 +237,9 @@ flex items-center justify-between px-5 md:px-12 py-5">
         <div className="relative z-10 h-full flex items-center px-4 sm:px-8 md:px-20 pt-20 md:pt-24">
 
           <motion.div
-  initial={{ opacity: 0, y: 80 }}
+  initial={{ opacity: 0, y: 40 }}
   animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
   className="max-w-2xl"
 >
 
@@ -364,9 +364,10 @@ flex items-center justify-between px-5 md:px-12 py-5">
 
     {/* GALLERY GRID */}
     <motion.div
-  initial={{ opacity: 0, y: 100 }}
+  initial={{ opacity: 0, y: 50 }}
   whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
+  viewport={{ once: true, amount: 0.05 }}
+  transition={{ duration: 0.7, ease: "easeOut" }}
   className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"
 >
 
@@ -549,11 +550,6 @@ flex items-center justify-between px-5 md:px-12 py-5">
 <button onClick={toggleMusic} className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full text-2xl shadow-2xl flex items-center justify-center transition duration-300">
   {isPlaying ? "🎵" : "🔇"}
 </button>
-
-{/* WHATSAPP FLOAT */}
-<a href="https://wa.me/916230182198" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="WhatsApp">
-  <FaWhatsapp />
-</a>
 
 {/* BACK TO TOP */}
 {showTop && (

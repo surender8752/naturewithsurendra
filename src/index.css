@@ -17,28 +17,20 @@ body{
 
 
   .hero-image{
+  -webkit-animation: heroAnimation 18s ease-in-out infinite alternate;
   animation: heroAnimation 18s ease-in-out infinite alternate;
   will-change: transform;
+  transform: translateZ(0);
 }
 @keyframes heroAnimation{
-
-  0%{
-    transform:
-    scale(1)
-    translateY(0px);
-  }
-
-  50%{
-    transform:
-    scale(1.08)
-    translateY(-10px);
-  }
-
-  100%{
-    transform:
-    scale(1.15)
-    translateY(0px);
-  }
+  0%   { transform: scale(1) translateY(0px) translateZ(0); }
+  50%  { transform: scale(1.08) translateY(-10px) translateZ(0); }
+  100% { transform: scale(1.15) translateY(0px) translateZ(0); }
+}
+@-webkit-keyframes heroAnimation{
+  0%   { -webkit-transform: scale(1) translateY(0px); }
+  50%  { -webkit-transform: scale(1.08) translateY(-10px); }
+  100% { -webkit-transform: scale(1.15) translateY(0px); }
 }
 
 
@@ -53,73 +45,37 @@ body{
 /* CLOUD 1 */
 
 .cloud1{
-  width:300px;
-  height:100px;
-
-  top:10%;
-  left:0;
-
-  animation:cloud1 35s linear infinite;
+  width:300px; height:100px; top:10%; left:0;
+  -webkit-animation: cloud1 35s linear infinite;
+  animation: cloud1 35s linear infinite;
+  transform: translateZ(0);
 }
 
 /* CLOUD 2 */
 
 .cloud2{
-  width:250px;
-  height:80px;
-
-  top:40%;
-  left:-10%;
-
-  animation:cloud2 45s linear infinite;
+  width:250px; height:80px; top:40%; left:-10%;
+  -webkit-animation: cloud2 45s linear infinite;
+  animation: cloud2 45s linear infinite;
+  transform: translateZ(0);
 }
 
 /* CLOUD 3 */
 
 .cloud3{
-  width:350px;
-  height:120px;
-
-  top:70%;
-  left:-5%;
-
-  animation:cloud3 60s linear infinite;
+  width:350px; height:120px; top:70%; left:-5%;
+  -webkit-animation: cloud3 60s linear infinite;
+  animation: cloud3 60s linear infinite;
+  transform: translateZ(0);
 }
 
 /* ANIMATIONS */
-
-@keyframes cloud1{
-
-  from{
-    transform:translateX(-400px);
-  }
-
-  to{
-    transform:translateX(1600px);
-  }
-}
-
-@keyframes cloud2{
-
-  from{
-    transform:translateX(-500px);
-  }
-
-  to{
-    transform:translateX(1600px);
-  }
-}
-
-@keyframes cloud3{
-
-  from{
-    transform:translateX(-600px);
-  }
-
-  to{
-    transform:translateX(1600px);
-  }
-}
+@keyframes cloud1{ from{ transform:translateX(-400px) translateZ(0); } to{ transform:translateX(1600px) translateZ(0); } }
+@-webkit-keyframes cloud1{ from{ -webkit-transform:translateX(-400px); } to{ -webkit-transform:translateX(1600px); } }
+@keyframes cloud2{ from{ transform:translateX(-500px) translateZ(0); } to{ transform:translateX(1600px) translateZ(0); } }
+@-webkit-keyframes cloud2{ from{ -webkit-transform:translateX(-500px); } to{ -webkit-transform:translateX(1600px); } }
+@keyframes cloud3{ from{ transform:translateX(-600px) translateZ(0); } to{ transform:translateX(1600px) translateZ(0); } }
+@-webkit-keyframes cloud3{ from{ -webkit-transform:translateX(-600px); } to{ -webkit-transform:translateX(1600px); } }
 
 
 .particles{
@@ -131,18 +87,13 @@ body{
 }
 
 .particles span{
-  position:absolute;
-  bottom:-20px;
-
-  width:4px;
-  height:4px;
-
-  background:white;
-  border-radius:50%;
-
-  opacity:0.6;
-
-  animation:particleMove linear infinite;
+  position:absolute; bottom:-20px;
+  width:4px; height:4px;
+  background:white; border-radius:50%; opacity:0.6;
+  -webkit-animation: particleMove linear infinite;
+  animation: particleMove linear infinite;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* RANDOM POSITIONS */
@@ -194,26 +145,14 @@ body{
 }
 
 @keyframes particleMove{
-
-  from{
-    transform:
-    translateY(0)
-    scale(1);
-
-    opacity:0;
-  }
-
-  20%{
-    opacity:0.7;
-  }
-
-  to{
-    transform:
-    translateY(-110vh)
-    scale(1.5);
-
-    opacity:0;
-  }
+  from{ transform: translateY(0) scale(1) translateZ(0); opacity:0; }
+  20%{ opacity:0.7; }
+  to{ transform: translateY(-110vh) scale(1.5) translateZ(0); opacity:0; }
+}
+@-webkit-keyframes particleMove{
+  from{ -webkit-transform: translateY(0) scale(1); opacity:0; }
+  20%{ opacity:0.7; }
+  to{ -webkit-transform: translateY(-110vh) scale(1.5); opacity:0; }
 }
 
 .navbar{
@@ -346,33 +285,39 @@ body{
 .play-btn::before {
   content: ''; position: absolute; inset: -8px; border-radius: 50%;
   border: 2px solid rgba(34,197,94,0.4);
+  -webkit-animation: pulse-ring 2s ease-out infinite;
   animation: pulse-ring 2s ease-out infinite;
 }
 @keyframes pulse-ring {
-  0%   { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.5); opacity: 0; }
+  0%   { transform: scale(1) translateZ(0); opacity: 1; }
+  100% { transform: scale(1.5) translateZ(0); opacity: 0; }
+}
+@-webkit-keyframes pulse-ring {
+  0%   { -webkit-transform: scale(1); opacity: 1; }
+  100% { -webkit-transform: scale(1.5); opacity: 0; }
 }
 .play-btn:hover { transform: scale(1.1); }
 
 /* ─── WHATSAPP FLOAT ─── */
 .whatsapp-float {
-  position: fixed; bottom: 160px; right: 24px;
-  width: 56px; height: 56px; background: #25d366;
+  position: fixed; bottom: 90px; left: 24px;
+  width: 52px; height: 52px; background: #25d366;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 26px; color: white;
+  font-size: 24px; color: white;
   box-shadow: 0 4px 24px rgba(37,211,102,0.5);
   z-index: 50; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
 }
 .whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(37,211,102,0.7); }
 
 /* ─── BACK TO TOP ─── */
 .back-to-top {
   position: fixed; bottom: 24px; left: 24px;
-  width: 48px; height: 48px;
+  width: 44px; height: 44px;
   background: rgba(34,197,94,0.15);
   border: 1px solid rgba(34,197,94,0.4);
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: #4ade80;
+  font-size: 16px; color: #4ade80;
   cursor: pointer; transition: all 0.3s; backdrop-filter: blur(8px); z-index: 50;
 }
 .back-to-top:hover { background: #22c55e; color: black; box-shadow: 0 0 20px rgba(34,197,94,0.6); }
@@ -408,11 +353,15 @@ body{
 /* ─── MOBILE OVERRIDES ─── */
 @media (max-width: 640px) {
   .testimonial-card { padding: 24px !important; }
-  .whatsapp-float { width: 48px; height: 48px; font-size: 22px; bottom: 84px; right: 16px; }
-  .back-to-top { width: 40px; height: 40px; font-size: 15px; bottom: 16px; left: 16px; }
+  .back-to-top { width: 38px; height: 38px; font-size: 14px; bottom: 24px; left: 16px; }
   .play-btn { width: 60px !important; height: 60px !important; }
   .play-btn::before { inset: -6px; }
   .lightbox-img { max-width: 95vw; max-height: 80vh; }
   .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 16px; }
+  /* Disable heavy cloud/particle animations on mobile for performance */
+  .cloud { display: none; }
+  .particles { display: none; }
+  /* Ensure hero image still shows without animation on low-end mobile */
+  .hero-image { -webkit-animation-duration: 30s; animation-duration: 30s; }
 }
 
