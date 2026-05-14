@@ -356,7 +356,7 @@ body{
 
 /* ─── WHATSAPP FLOAT ─── */
 .whatsapp-float {
-  position: fixed; bottom: 96px; right: 24px;
+  position: fixed; bottom: 160px; right: 24px;
   width: 56px; height: 56px; background: #25d366;
   border-radius: 50%; display: flex; align-items: center; justify-content: center;
   font-size: 26px; color: white;
@@ -404,4 +404,15 @@ body{
 .zoom-layer:hover { background: rgba(0,0,0,0.45); }
 .zoom-icon { opacity: 0; transform: scale(0.7); transition: opacity 0.3s, transform 0.3s; color: white; font-size: 32px; }
 .zoom-layer:hover .zoom-icon { opacity: 1; transform: scale(1); }
+
+/* ─── MOBILE OVERRIDES ─── */
+@media (max-width: 640px) {
+  .testimonial-card { padding: 24px !important; }
+  .whatsapp-float { width: 48px; height: 48px; font-size: 22px; bottom: 84px; right: 16px; }
+  .back-to-top { width: 40px; height: 40px; font-size: 15px; bottom: 16px; left: 16px; }
+  .play-btn { width: 60px !important; height: 60px !important; }
+  .play-btn::before { inset: -6px; }
+  .lightbox-img { max-width: 95vw; max-height: 80vh; }
+  .lightbox-close { top: 12px; right: 12px; width: 40px; height: 40px; font-size: 16px; }
+}
 
