@@ -14,78 +14,64 @@ import blog1 from "./assets/blog1.jpg";
 import blog2 from "./assets/blog2.jpg";
 import blog3 from "./assets/blog3.jpg";
 import {
-  FaInstagram,
-  FaYoutube,
-  FaWhatsapp,
-  FaEnvelope,
-  FaMountain,
-  FaWater,
-  FaTree,
-  FaMotorcycle,
-  FaBars,
-  FaTimes,
+  FaInstagram, FaYoutube, FaWhatsapp, FaEnvelope,
+  FaMountain, FaWater, FaTree, FaMotorcycle,
+  FaBars, FaTimes, FaArrowUp, FaSearchPlus,
 } from "react-icons/fa";
-
 import { IoSunny } from "react-icons/io5";
-
 import { GiHiking } from "react-icons/gi";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+import Stats from "./Stats";
+import Testimonials from "./Testimonials";
+import VideoSection from "./VideoSection";
+import MapSection from "./MapSection";
 
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const audioRef = useRef(null);
-  const [isPlaying, setIsPlaying] =
-  useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [showTop, setShowTop] = useState(false);
+  const [lightbox, setLightbox] = useState(null);
+  const [fStatus, setFStatus] = useState("idle");
+  const [fData, setFData] = useState({ name:"", email:"", message:"" });
+  const formRef = useRef(null);
 
 
   useEffect(() => {
+    const playMusic = async () => {
+      try { await audioRef.current.play(); setIsPlaying(true); } catch(e){}
+    };
+    document.addEventListener("click", playMusic, { once: true });
+    return () => document.removeEventListener("click", playMusic);
+  }, []);
 
-  const playMusic = async () => {
+  useEffect(() => {
+    const fn = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress((window.scrollY / total) * 100);
+      setShowTop(window.scrollY > 500);
+    };
+    window.addEventListener("scroll", fn);
+    return () => window.removeEventListener("scroll", fn);
+  }, []);
 
+  const toggleMusic = () => {
+    if (isPlaying) { audioRef.current.pause(); setIsPlaying(false); }
+    else { audioRef.current.play(); setIsPlaying(true); }
+  };
+  const openLightbox = (src, title) => { setLightbox({src,title}); document.body.style.overflow="hidden"; };
+  const closeLightbox = () => { setLightbox(null); document.body.style.overflow="auto"; };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); setFStatus("sending");
     try {
-
-      await audioRef.current.play();
-
-      setIsPlaying(true);
-
-    } catch (err) {
-
-      console.log("Autoplay blocked");
-    }
+      await emailjs.sendForm("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",formRef.current,"YOUR_PUBLIC_KEY");
+      setFStatus("success"); setFData({name:"",email:"",message:""});
+    } catch { setFStatus("error"); }
   };
-
-  document.addEventListener(
-    "click",
-    playMusic
-  );
-
-  return () => {
-
-    document.removeEventListener(
-      "click",
-      playMusic
-    );
-  };
-
-}, []);
-
-const toggleMusic = () => {
-
-  if (isPlaying) {
-
-    audioRef.current.pause();
-
-    setIsPlaying(false);
-
-  } else {
-
-    audioRef.current.play();
-
-    setIsPlaying(true);
-  }
-};
 
   return (
     
@@ -93,9 +79,21 @@ const toggleMusic = () => {
 
     
     <div className="bg-black text-white overflow-hidden">
-     <audio ref={audioRef} loop>
-  <source src={music} type="audio/mp3" />
-</audio>
+      <audio ref={audioRef} loop><source src={music} type="audio/mp3" /></audio>
+
+      {/* SCROLL PROGRESS */}
+      <div className="scroll-progress" style={{width:`${progress}%`}} />
+
+      {/* LIGHTBOX */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div className="lightbox-overlay" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={closeLightbox}>
+            <motion.img className="lightbox-img" src={lightbox.src} alt={lightbox.title} initial={{scale:0.8}} animate={{scale:1}} onClick={e=>e.stopPropagation()} />
+            <button className="lightbox-close" onClick={closeLightbox}><FaTimes/></button>
+            <p className="absolute bottom-8 text-white text-lg font-semibold">{lightbox.title}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* HERO SECTION */}
      <section
@@ -282,6 +280,10 @@ flex items-center justify-between px-5 md:px-12 py-5">
         </div>
 
       </section>
+
+      {/* STATS */}
+      <Stats />
+
       {/* CATEGORY SECTION */}
 
 <section className="bg-black px-5 md:px-10 py-10">
@@ -414,103 +416,35 @@ flex items-center justify-between px-5 md:px-12 py-5">
 >
 
       {/* CARD 1 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
-
-        <img
-          src={mountain}
-          alt=""
-          className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
-
-        <div className="absolute bottom-6 left-6">
-
-          <h2 className="text-2xl font-bold">
-            Mountains
-          </h2>
-
-          <p className="text-gray-300">
-            45 Photos
-          </p>
-
-        </div>
-
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px] cursor-pointer" onClick={()=>openLightbox(mountain,"Mountains")}>
+        <img src={mountain} alt="" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+        <div className="zoom-layer"><FaSearchPlus className="zoom-icon" /></div>
+        <div className="absolute bottom-6 left-6"><h2 className="text-2xl font-bold">Mountains</h2><p className="text-gray-300">45 Photos</p></div>
       </div>
 
       {/* CARD 2 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
-
-        <img
-          src={lake}
-          alt=""
-          className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
-
-        <div className="absolute bottom-6 left-6">
-
-          <h2 className="text-2xl font-bold">
-            Lakes
-          </h2>
-
-          <p className="text-gray-300">
-            28 Photos
-          </p>
-
-        </div>
-
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px] cursor-pointer" onClick={()=>openLightbox(lake,"Lakes")}>
+        <img src={lake} alt="" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+        <div className="zoom-layer"><FaSearchPlus className="zoom-icon" /></div>
+        <div className="absolute bottom-6 left-6"><h2 className="text-2xl font-bold">Lakes</h2><p className="text-gray-300">28 Photos</p></div>
       </div>
 
       {/* CARD 3 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
-
-        <img
-          src={sunset}
-          alt=""
-          className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
-
-        <div className="absolute bottom-6 left-6">
-
-          <h2 className="text-2xl font-bold">
-            Sunsets
-          </h2>
-
-          <p className="text-gray-300">
-            32 Photos
-          </p>
-
-        </div>
-
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px] cursor-pointer" onClick={()=>openLightbox(sunset,"Sunsets")}>
+        <img src={sunset} alt="" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+        <div className="zoom-layer"><FaSearchPlus className="zoom-icon" /></div>
+        <div className="absolute bottom-6 left-6"><h2 className="text-2xl font-bold">Sunsets</h2><p className="text-gray-300">32 Photos</p></div>
       </div>
 
       {/* CARD 4 */}
-      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px]">
-
-        <img
-          src={forest}
-          alt=""
-          className="w-full h-full object-cover group-hover:scale-110 transition duration-500"
-        />
-
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent"></div>
-
-        <div className="absolute bottom-6 left-6">
-
-          <h2 className="text-2xl font-bold">
-            Forests
-          </h2>
-
-          <p className="text-gray-300">
-            26 Photos
-          </p>
-
-        </div>
-
+      <div className="relative overflow-hidden rounded-3xl group h-[280px] sm:h-[380px] md:h-[500px] cursor-pointer" onClick={()=>openLightbox(forest,"Forests")}>
+        <img src={forest} alt="" className="w-full h-full object-cover group-hover:scale-110 transition duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 to-transparent" />
+        <div className="zoom-layer"><FaSearchPlus className="zoom-icon" /></div>
+        <div className="absolute bottom-6 left-6"><h2 className="text-2xl font-bold">Forests</h2><p className="text-gray-300">26 Photos</p></div>
       </div>
 
     </motion.div>
@@ -518,6 +452,10 @@ flex items-center justify-between px-5 md:px-12 py-5">
   </div>
 
 </section>
+
+      {/* VIDEO */}
+      <VideoSection />
+
 {/* BLOG SECTION */}
 
 <section id="blogs" className="bg-black px-5 md:px-10 py-20">
@@ -647,6 +585,8 @@ flex items-center justify-between px-5 md:px-12 py-5">
 
 </section>
 
+      {/* TESTIMONIALS */}
+      <Testimonials />
 
 {/* DESTINATIONS SECTION */}
 
@@ -760,6 +700,10 @@ flex items-center justify-between px-5 md:px-12 py-5">
   </div>
 
 </section>
+
+      {/* MAP */}
+      <MapSection />
+
 {/* ABOUT SECTION */}
 
 <section id="about" className="bg-black px-5 md:px-10 py-24">
@@ -1083,20 +1027,21 @@ flex items-center justify-between px-5 md:px-12 py-5">
 
 </footer>
 {/* MUSIC BUTTON */}
-
-<button
-  onClick={toggleMusic}
-  className="fixed bottom-6 right-6 z-50
-  bg-green-500 hover:bg-green-600
-  w-16 h-16 rounded-full
-  text-2xl shadow-2xl
-  flex items-center justify-center
-  transition duration-300"
->
-
+<button onClick={toggleMusic} className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 w-16 h-16 rounded-full text-2xl shadow-2xl flex items-center justify-center transition duration-300">
   {isPlaying ? "🎵" : "🔇"}
-
 </button>
+
+{/* WHATSAPP FLOAT */}
+<a href="https://wa.me/916230182198" target="_blank" rel="noreferrer" className="whatsapp-float" aria-label="WhatsApp">
+  <FaWhatsapp />
+</a>
+
+{/* BACK TO TOP */}
+{showTop && (
+  <button onClick={()=>window.scrollTo({top:0,behavior:"smooth"})} className="back-to-top" aria-label="Back to top">
+    <FaArrowUp />
+  </button>
+)}
 
     </div>
   );
