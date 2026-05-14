@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 
 html{
@@ -272,5 +273,135 @@ body{
   0 0 12px rgba(34,197,94,0.8);
 }
 
+/* ─── SCROLL PROGRESS BAR ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #22c55e, #4ade80, #86efac);
+  z-index: 9999;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 10px rgba(34,197,94,0.8);
+}
 
+/* ─── LIGHTBOX ─── */
+.lightbox-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+}
+.lightbox-img {
+  max-width: 90vw; max-height: 85vh;
+  object-fit: contain; border-radius: 16px;
+  box-shadow: 0 0 80px rgba(34,197,94,0.3);
+}
+.lightbox-close {
+  position: absolute; top: 24px; right: 24px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white; width: 48px; height: 48px;
+  border-radius: 50%; display: flex;
+  align-items: center; justify-content: center;
+  cursor: pointer; font-size: 20px; transition: background 0.3s;
+}
+.lightbox-close:hover { background: rgba(239,68,68,0.7); }
+
+/* ─── TESTIMONIAL ─── */
+.testimonial-card {
+  background: linear-gradient(135deg, #111 0%, #0d1a0d 100%);
+  border: 1px solid rgba(34,197,94,0.15);
+  border-radius: 24px; padding: 40px;
+  position: relative; overflow: hidden;
+}
+.testimonial-card::before {
+  content: '"'; position: absolute;
+  top: -20px; left: 24px;
+  font-size: 120px; color: rgba(34,197,94,0.08);
+  font-family: Georgia, serif; line-height: 1; pointer-events: none;
+}
+.avatar-ring {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, #22c55e, #15803d);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 18px; flex-shrink: 0;
+  box-shadow: 0 0 20px rgba(34,197,94,0.4);
+}
+
+/* ─── STAT GLOW ─── */
+.stat-number {
+  background: linear-gradient(180deg, #4ade80 0%, #22c55e 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(34,197,94,0.5));
+}
+
+/* ─── VIDEO PLAY BTN ─── */
+.play-btn {
+  width: 80px; height: 80px; background: rgba(34,197,94,0.9);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform 0.3s; position: relative;
+}
+.play-btn::before {
+  content: ''; position: absolute; inset: -8px; border-radius: 50%;
+  border: 2px solid rgba(34,197,94,0.4);
+  animation: pulse-ring 2s ease-out infinite;
+}
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.play-btn:hover { transform: scale(1.1); }
+
+/* ─── WHATSAPP FLOAT ─── */
+.whatsapp-float {
+  position: fixed; bottom: 96px; right: 24px;
+  width: 56px; height: 56px; background: #25d366;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: white;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.5);
+  z-index: 50; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+}
+.whatsapp-float:hover { transform: scale(1.12); box-shadow: 0 8px 32px rgba(37,211,102,0.7); }
+
+/* ─── BACK TO TOP ─── */
+.back-to-top {
+  position: fixed; bottom: 24px; left: 24px;
+  width: 48px; height: 48px;
+  background: rgba(34,197,94,0.15);
+  border: 1px solid rgba(34,197,94,0.4);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: #4ade80;
+  cursor: pointer; transition: all 0.3s; backdrop-filter: blur(8px); z-index: 50;
+}
+.back-to-top:hover { background: #22c55e; color: black; box-shadow: 0 0 20px rgba(34,197,94,0.6); }
+
+/* ─── MAP PIN PULSE ─── */
+.map-pin { position: absolute; display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+.map-pin-dot {
+  width: 14px; height: 14px; background: #22c55e;
+  border-radius: 50%; border: 2px solid white;
+  animation: pin-pulse 2s infinite;
+}
+@keyframes pin-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70%  { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+.map-pin-label {
+  background: rgba(0,0,0,0.85); border: 1px solid rgba(34,197,94,0.4);
+  color: white; font-size: 11px; padding: 3px 8px;
+  border-radius: 6px; margin-top: 4px; white-space: nowrap;
+}
+
+/* ─── GALLERY ZOOM ─── */
+.zoom-layer {
+  position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center;
+  background: rgba(0,0,0,0); transition: background 0.3s;
+}
+.zoom-layer:hover { background: rgba(0,0,0,0.45); }
+.zoom-icon { opacity: 0; transform: scale(0.7); transition: opacity 0.3s, transform 0.3s; color: white; font-size: 32px; }
+.zoom-layer:hover .zoom-icon { opacity: 1; transform: scale(1); }
 
